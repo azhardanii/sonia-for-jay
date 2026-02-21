@@ -348,7 +348,7 @@
         function generateImages(indices) {
             let html = '';
             indices.forEach(i => {
-                html += `<div class="gallery-item"><img loading="lazy" decoding="async" src="/foto (${i}).webp" alt="Memory ${i}"></div>`;
+                html += `<div class="gallery-item"><img loading="lazy" decoding="async" src="foto (${i}).webp" alt="Memory ${i}"></div>`;
             });
             return html + html;
         }
@@ -364,12 +364,11 @@
         const audioToggleBtn = document.getElementById('audioToggle');
         const audioIcon = document.getElementById('audioIcon');
         
-        const bgAudio = new Audio('/backsound.mp3');
+        const bgAudio = new Audio('backsound.mp3');
         bgAudio.loop = true;
         let isAudioPlaying = false;
 
         openBtn.addEventListener('click', () => {
-            // Play Audio
             bgAudio.volume = 0.5;
             bgAudio.play().then(() => {
                 isAudioPlaying = true;
