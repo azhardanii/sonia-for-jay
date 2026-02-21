@@ -488,8 +488,7 @@
             }
             
             const phone = "6281234567890";
-            const encodedMessage = encodeURIComponent(message);
-            const waUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+            const waUrl = `https://api.whatsapp.com/send/?phone=${phone}?text=${message}&type=phone_number&app_absent=0`;
             
             window.open(waUrl, '_blank');
         }
