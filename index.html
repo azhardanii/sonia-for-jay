@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For Joy 💙</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
     <script>
@@ -37,8 +34,8 @@
                     },
                     animation: {
                         'float': 'float 15s linear infinite',
-                        'marquee-left': 'marquee-left 40s linear infinite',
-                        'marquee-right': 'marquee-right 40s linear infinite',
+                        'marquee-left': 'marquee-left 30s linear infinite',
+                        'marquee-right': 'marquee-right 30s linear infinite',
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
@@ -62,7 +59,6 @@
         }
     </script>
     <style>
-        /* Custom Scrollbar for elegance */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #eff6ff; }
         ::-webkit-scrollbar-thumb { background: #93c5fd; border-radius: 4px; }
@@ -82,13 +78,13 @@
             pointer-events: none;
         }
 
-        /* Hide scrollbar for gallery but allow scrolling if needed */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         .gallery-container {
             display: flex;
-            width: 200%; /* Double width for seamless loop */
+            width: 200%;
+            will-change: transform;
         }
         
         .gallery-item {
@@ -100,20 +96,24 @@
             overflow: hidden;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             position: relative;
+            transform: translateZ(0);
         }
         
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            backface-visibility: hidden;
         }
     </style>
 </head>
 <body class="bg-blue-950 text-slate-800 antialiased overflow-x-hidden selection:bg-blue-300 selection:text-blue-900">
 
-    <!-- LANDING PAGE -->
+    <button id="audioToggle" class="fixed top-6 right-6 z-[60] hidden w-12 h-12 flex items-center justify-center bg-white/60 backdrop-blur-md border border-blue-200 rounded-full shadow-lg hover:bg-white hover:scale-110 transition-all duration-300 group">
+        <span id="audioIcon" class="text-xl">🔊</span>
+    </button>
+
     <div id="landingPage" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 transition-opacity duration-1000 overflow-hidden">
-        <!-- Floating emojis container -->
         <div id="emojiContainer" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
 
         <div class="relative z-10 text-center px-6">
@@ -128,12 +128,10 @@
         </div>
     </div>
 
-    <!-- MAIN LETTER CONTENT -->
     <div id="mainContent" class="hidden opacity-0 transition-opacity duration-1000 min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-100">
         
         <div class="max-w-4xl mx-auto px-6 py-20 md:py-32">
             
-            <!-- SECTION 1: Text -->
             <section class="mb-20 text-center" data-aos="fade-up">
                 <div class="inline-block mb-6">
                     <span class="text-4xl animate-pulse-slow block mb-4">💙</span>
@@ -148,22 +146,14 @@
                 </div>
             </section>
 
-            <!-- SECTION 2: Gallery 1 (First 33 Photos) -->
-        <section class="mb-24 relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden py-10">
-            <div class="absolute inset-0 bg-blue-900/5 backdrop-blur-sm z-0"></div>
-            <div class="relative z-10 w-full overflow-hidden flex flex-col gap-6">
-                <!-- Marquee Container Left -->
-                <div class="gallery-container animate-marquee-left" id="gallery1-row1">
-                    <!-- JS will inject images here -->
+            <section class="mb-24 relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden py-10">
+                <div class="absolute inset-0 bg-blue-900/5 backdrop-blur-sm z-0"></div>
+                <div class="relative z-10 w-full overflow-hidden flex flex-col gap-6">
+                    <div class="gallery-container animate-marquee-left" id="gallery1-row1"></div>
+                    <div class="gallery-container animate-marquee-right" id="gallery1-row2"></div>
                 </div>
-                <!-- Marquee Container Right -->
-                <div class="gallery-container animate-marquee-right" id="gallery1-row2">
-                    <!-- JS will inject images here -->
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- SECTION 3: Text -->
             <section class="mb-24 max-w-2xl mx-auto text-center px-4">
                 <p class="font-serif text-lg md:text-xl leading-loose text-slate-700 mb-10">
                     I want to begin with a sincere apology. I’m sorry for every misunderstanding, every time my words weren’t soft enough, and every moment when the distance felt heavier than it should. Loving from afar is never easy.
@@ -183,17 +173,14 @@
                 </div>
             </section>
 
-            <!-- SECTION 4: Video -->
             <section class="mb-24 w-full max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(30,58,138,0.2)] border-8 border-white relative">
                 <div class="absolute inset-0 bg-blue-900/20 mix-blend-overlay z-10 pointer-events-none"></div>
-                <!-- Aesthetic placeholder video representing ocean/sky/distance -->
                 <video autoplay loop muted playsinline class="w-full h-[400px] md:h-[600px] object-cover">
                     <source src="https://assets.mixkit.co/videos/preview/mixkit-waves-in-the-water-1164-large.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </section>
 
-            <!-- SECTION 5: Text & Interactive Buttons -->
             <section class="mb-24 max-w-3xl mx-auto px-4">
                 <p class="font-serif text-lg md:text-xl leading-loose text-slate-700 text-center mb-10">
                     In these 1,386 days, we’ve experienced so many ups and downs. We’ve laughed, we’ve cried, we’ve argued, and we’ve learned how to fix things together. There were nights filled with tears because we missed each other so much. There were days when everything felt overwhelming.
@@ -232,7 +219,6 @@
                     I truly believe these 1,386 days have been preparing us — preparing our hearts to be more patient, our minds to be more mature, and our love to be stronger. All of this is shaping us to step into marriage not just in love, but in readiness.
                 </p>
 
-                <!-- Interactive Buttons -->
                 <div class="relative max-w-lg mx-auto p-8 mt-12 mb-10 bg-white/60 backdrop-blur-sm border border-blue-100/50 rounded-3xl shadow-[0_10px_40px_-10px_rgba(59,130,246,0.15)] text-center">
                     <p class="font-serif text-slate-500 italic mb-6">A little distance won't stop this...</p>
                     <div class="flex flex-col sm:flex-row justify-center gap-6 items-center">
@@ -252,22 +238,14 @@
                 </div>
             </section>
 
-            <!-- SECTION 6: Gallery 2 (Next 33 Photos) -->
-        <section class="mb-24 relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden py-10">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-100/30 to-transparent z-0"></div>
-            <div class="relative z-10 w-full overflow-hidden flex flex-col gap-6">
-                <!-- Marquee Container Right -->
-                <div class="gallery-container animate-marquee-right" id="gallery2-row1">
-                    <!-- JS will inject images here -->
+            <section class="mb-24 relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden py-10">
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-100/30 to-transparent z-0"></div>
+                <div class="relative z-10 w-full overflow-hidden flex flex-col gap-6">
+                    <div class="gallery-container animate-marquee-right" id="gallery2-row1"></div>
+                    <div class="gallery-container animate-marquee-left" id="gallery2-row2"></div>
                 </div>
-                <!-- Marquee Container Left -->
-                <div class="gallery-container animate-marquee-left" id="gallery2-row2">
-                    <!-- JS will inject images here -->
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- SECTION 7: Text (Conclusion) -->
             <section class="text-center max-w-2xl mx-auto px-4 pb-20">
                 <p class="font-serif text-xl md:text-2xl leading-relaxed text-slate-800 mb-12">
                     These 3,250 miles are not just distance. They are proof of commitment. Proof that love is not about being physically close every day, but about choosing each other consistently, even when it’s hard.
@@ -290,13 +268,12 @@
                 </div>
             </section>
 
-            <!-- SECTION 8: Reaction Form -->
             <section class="max-w-xl mx-auto px-4 pb-10 text-center">
                 <div class="bg-white/80 backdrop-blur-md p-8 md:p-10 rounded-3xl shadow-[0_10px_40px_-10px_rgba(59,130,246,0.1)] border border-blue-50">
                     <h3 class="font-serif text-2xl text-blue-900 mb-2">Tell me your thoughts 💙</h3>
                     <p class="font-sans text-slate-500 text-sm mb-6">What do you feel right now after reading this?</p>
                     <textarea id="waMessage" rows="4" class="w-full px-4 py-3 rounded-xl border border-blue-200 bg-blue-50/30 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all resize-none text-slate-700 font-sans mb-4" placeholder="Type your feelings here..."></textarea>
-                    <button onclick="sendToWhatsApp()" class="w-full sm:w-auto px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-medium rounded-full shadow-lg hover:shadow-green-500/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-2 mx-auto">
+                    <button onclick="sendToWhatsApp()" class="w-full font-serif italic sm:w-auto px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-medium rounded-full shadow-lg hover:shadow-green-500/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-2 mx-auto">
                         <span>Send to my WhatsApp</span>
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     </button>
@@ -306,8 +283,19 @@
         </div>
     </div>
 
+    <div id="interactionModal" class="fixed inset-0 z-[100] hidden items-center justify-center">
+        <div class="absolute inset-0 bg-blue-950/40 backdrop-blur-sm transition-opacity" onclick="closeInteraction()"></div>
+        <div class="relative bg-white rounded-3xl p-10 max-w-sm w-[90%] text-center shadow-2xl transform scale-95 transition-transform duration-300" id="modalContent">
+            <div id="modalIcon" class="text-6xl mb-6 animate-bounce"></div>
+            <h3 id="modalTitle" class="font-serif text-2xl text-blue-900 mb-3"></h3>
+            <p id="modalDesc" class="font-sans text-slate-600 mb-8 leading-relaxed"></p>
+            <button onclick="closeInteraction()" class="px-6 py-2 bg-blue-100 text-blue-800 rounded-full font-medium hover:bg-blue-200 transition">
+                Close
+            </button>
+        </div>
+    </div>
+
     <style>
-        /* Additional animations for fade up */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -315,7 +303,6 @@
     </style>
 
     <script>
-        // --- 1. EMOJI BACKGROUND ANIMATION ---
         const emojis = ['💙', '🦋', '✨', '🌊', '🕊️', '🤍'];
         const emojiContainer = document.getElementById('emojiContainer');
 
@@ -324,7 +311,6 @@
             emoji.className = 'emoji-bg animate-float opacity-0';
             emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
             
-            // Randomize position, size, and duration
             const leftPosition = Math.random() * 100;
             const animationDuration = 10 + Math.random() * 15;
             const size = 1 + Math.random() * 1.5;
@@ -335,59 +321,63 @@
 
             emojiContainer.appendChild(emoji);
 
-            // Remove after animation completes
             setTimeout(() => {
                 emoji.remove();
             }, animationDuration * 1000);
         }
 
-        // Spawn emojis periodically
         setInterval(createFloatingEmoji, 800);
-        // Initial spawn
         for(let i=0; i<15; i++) {
             setTimeout(createFloatingEmoji, Math.random() * 2000);
         }
 
-        // --- 2. DYNAMIC DAYS CALCULATION ---
         const startDate = new Date('2022-05-06T00:00:00');
         const today = new Date();
         const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-        const formattedDays = diffDays.toLocaleString('en-US'); // Adds the comma e.g. 1,387
+        const formattedDays = diffDays.toLocaleString('en-US');
         
-        // Gantikan seluruh teks 1,386 menjadi nilai yang dinamis saat ini
         const mainContent = document.getElementById('mainContent');
         mainContent.innerHTML = mainContent.innerHTML.replace(/1,386/g, formattedDays);
 
-        // --- 3. GENERATE 66 PHOTOS (GALLERY 2 ROWS) ---
-        function generateImages(start, end) {
-            let html = '';
-            for(let i = start; i <= end; i++) {
-                // Gambar ditampilkan murni tanpa balutan filter biru
-                html += `<div class="gallery-item"><img loading="lazy" src="https://picsum.photos/seed/joy${i}/400/500" alt="Memory ${i}"></div>`;
-            }
-            return html + html; // Duplicate untuk efek loop berjalan tanpa batas
+        let photoIndices = Array.from({length: 66}, (_, i) => i + 1);
+        for (let i = photoIndices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [photoIndices[i], photoIndices[j]] = [photoIndices[j], photoIndices[i]];
         }
 
-        document.getElementById('gallery1-row1').innerHTML = generateImages(1, 16);
-        document.getElementById('gallery1-row2').innerHTML = generateImages(17, 33);
+        function generateImages(indices) {
+            let html = '';
+            indices.forEach(i => {
+                html += `<div class="gallery-item"><img loading="lazy" decoding="async" src="/foto (${i}).webp" alt="Memory ${i}"></div>`;
+            });
+            return html + html;
+        }
         
-        document.getElementById('gallery2-row1').innerHTML = generateImages(34, 50);
-        document.getElementById('gallery2-row2').innerHTML = generateImages(51, 66);
+        document.getElementById('gallery1-row1').innerHTML = generateImages(photoIndices.slice(0, 16));
+        document.getElementById('gallery1-row2').innerHTML = generateImages(photoIndices.slice(16, 33));
+        
+        document.getElementById('gallery2-row1').innerHTML = generateImages(photoIndices.slice(33, 50));
+        document.getElementById('gallery2-row2').innerHTML = generateImages(photoIndices.slice(50, 66));
 
-        // --- 4. LETTER OPENING LOGIC ---
         const openBtn = document.getElementById('openBtn');
         const landingPage = document.getElementById('landingPage');
+        const audioToggleBtn = document.getElementById('audioToggle');
+        const audioIcon = document.getElementById('audioIcon');
         
-        // Memastikan audio ter-load dan siap diputar via JS agar tidak diblokir sistem browser
-        const bgAudio = new Audio('https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3');
+        const bgAudio = new Audio('/backsound.mp3');
         bgAudio.loop = true;
+        let isAudioPlaying = false;
 
         openBtn.addEventListener('click', () => {
             // Play Audio
             bgAudio.volume = 0.5;
-            bgAudio.play().catch(e => console.log("Audio play failed (browser policy)", e));
+            bgAudio.play().then(() => {
+                isAudioPlaying = true;
+                audioIcon.innerText = '🔊';
+            }).catch(e => console.log("Audio play failed (browser policy)", e));
 
-            // Fire Confetti
+            audioToggleBtn.classList.remove('hidden');
+
             const duration = 3000;
             const end = Date.now() + duration;
 
@@ -412,23 +402,32 @@
                 }
             }());
 
-            // Transition UI
             landingPage.classList.remove('opacity-100');
             landingPage.classList.add('opacity-0');
             
             setTimeout(() => {
                 landingPage.classList.add('hidden');
-                mainContent.classList.remove('hidden');
+                document.getElementById('mainContent').classList.remove('hidden');
                 
-                // Trigger reflow
-                void mainContent.offsetWidth;
+                void document.getElementById('mainContent').offsetWidth;
                 
-                mainContent.classList.remove('opacity-0');
-                mainContent.classList.add('opacity-100');
+                document.getElementById('mainContent').classList.remove('opacity-0');
+                document.getElementById('mainContent').classList.add('opacity-100');
             }, 1000);
         });
 
-        // --- 4. INTERACTIVE BUTTONS LOGIC ---
+        audioToggleBtn.addEventListener('click', () => {
+            if (isAudioPlaying) {
+                bgAudio.pause();
+                audioIcon.innerText = '🔇';
+                isAudioPlaying = false;
+            } else {
+                bgAudio.play();
+                audioIcon.innerText = '🔊';
+                isAudioPlaying = true;
+            }
+        });
+
         const modal = document.getElementById('interactionModal');
         const modalContent = document.getElementById('modalContent');
         const modalIcon = document.getElementById('modalIcon');
@@ -449,7 +448,6 @@
                 modalTitle.innerText = 'A Million Virtual Kisses!';
                 modalDesc.innerText = 'Sending you all the kisses across the 3,250 miles. Can\'t wait to give you real ones! 💙';
                 
-                // Mini burst of kiss emojis
                 confetti({
                     particleCount: 30,
                     spread: 70,
@@ -475,13 +473,11 @@
                 modal.classList.add('hidden');
             }, 300);
         }
-
-        // --- 5. SEND TO WHATSAPP LOGIC ---
+        
         window.sendToWhatsApp = function() {
             const textarea = document.getElementById('waMessage');
             const message = textarea.value.trim();
             
-            // Validasi jika pesan kosong
             if(!message) {
                 textarea.classList.add('border-red-400', 'bg-red-50');
                 textarea.placeholder = "Tulis perasaanmu dulu yaa... 💙";
@@ -492,12 +488,10 @@
                 return;
             }
             
-            // Format nomor dan pesan
             const phone = "6281234567890";
             const encodedMessage = encodeURIComponent(message);
             const waUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
             
-            // Buka di tab baru
             window.open(waUrl, '_blank');
         }
     </script>
