@@ -187,7 +187,7 @@
                         <span class="font-sans text-sm animate-pulse">Loading memory...</span>
                     </div>
             
-                    <video id="memoryVideo" controls playsinline preload="metadata" class="relative z-10 w-full h-full object-cover">
+                    <video id="memoryVideo" controls playsinline preload="auto" class="relative z-10 w-full h-full object-cover">
                         <source src="video-compiled.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -346,7 +346,7 @@
 
         const startDate = new Date('2022-05-06T00:00:00');
         const today = new Date();
-        const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+        const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24) - 1);
         const formattedDays = diffDays.toLocaleString('en-US');
         
         document.getElementById('daysCount').innerText = formattedDays;
@@ -359,12 +359,17 @@
         }
 
         function generateImages(indices) {
-            let html = '';
-            indices.forEach(i => {
-                html += `<div class="gallery-item"><img loading="lazy" decoding="async" src="photo (${i}).webp" alt="Memory ${i}" width="250" height="300"></div>`;
-            });
-            return html + html;
-        }
+    let html = '';
+    indices.forEach((imgIndex, loopIndex) => {
+        const loadStrategy = loopIndex < 10 ? 'eager' : 'lazy';
+        const fetchPriority = loopIndex < 10 ? 'high' : 'auto';
+        
+        html += `<div class="gallery-item">
+            <img loading="${loadStrategy}" fetchpriority="${fetchPriority}" decoding="async" src="photo (${imgIndex}).webp" alt="Memory ${imgIndex}" width="250" height="300" class="bg-blue-100">
+        </div>`;
+    });
+    return html + html; // Digandakan agar marquee tidak putus
+}
         
         const openBtn = document.getElementById('openBtn');
         const landingPage = document.getElementById('landingPage');
@@ -527,7 +532,7 @@
                 return;
             }
             
-            const phone = "6281234567890";
+            const phone = "6281389797433";
             const waUrl = `https://api.whatsapp.com/send/?phone=${phone}&text=${message}&type=phone_number&app_absent=0`;
             
             window.open(waUrl, '_blank');
