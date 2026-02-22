@@ -520,7 +520,7 @@
 
         window.sendToWhatsApp = function() {
             const textarea = document.getElementById('waMessage');
-            const message = textarea.value.trim();
+            const message = textarea.value;
             
             if(!message) {
                 textarea.classList.add('border-red-400', 'bg-red-50');
