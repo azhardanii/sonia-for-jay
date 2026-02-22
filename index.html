@@ -518,9 +518,9 @@
             }, 300);
         }
 
-        window.sendToWhatsApp = function() {
+       window.sendToWhatsApp = function() {
             const textarea = document.getElementById('waMessage');
-            const message = textarea.value;
+            const message = textarea.value.trim(); 
             
             if(!message) {
                 textarea.classList.add('border-red-400', 'bg-red-50');
@@ -533,7 +533,8 @@
             }
             
             const phone = "6281389797433";
-            const waUrl = `https://api.whatsapp.com/send/?phone=${phone}&text=${message}&type=phone_number&app_absent=0`;
+            const encodedMessage = encodeURIComponent(message);
+            const waUrl = `https://api.whatsapp.com/send/?phone=${phone}&text=${encodedMessage}&type=phone_number&app_absent=0`;
             
             window.open(waUrl, '_blank');
         }
