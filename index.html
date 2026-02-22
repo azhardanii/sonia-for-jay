@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Joy 💙</title>
+    <title>For Jay Park 💙</title>
     <script src="https://cdn.tailwindcss.com"></script>    
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">    
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -14,17 +14,10 @@
                 extend: {
                     colors: {
                         blue: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            200: '#bfdbfe',
-                            300: '#93c5fd',
-                            400: '#60a5fa',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            800: '#1e40af',
-                            900: '#1e3a8a',
-                            950: '#172554',
+                            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe',
+                            300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6',
+                            600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af',
+                            900: '#1e3a8a', 950: '#172554',
                         }
                     },
                     fontFamily: {
@@ -35,8 +28,10 @@
                     },
                     animation: {
                         'float': 'float 15s linear infinite',
-                        'marquee-left': 'marquee-left 30s linear infinite',
-                        'marquee-right': 'marquee-right 30s linear infinite',
+                        'marquee-left': 'marquee-left 10s linear infinite',
+                        'marquee-left-md': 'marquee-left 30s linear infinite',
+                        'marquee-right': 'marquee-right 10s linear infinite',
+                        'marquee-right-md': 'marquee-right 30s linear infinite',
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
@@ -116,7 +111,7 @@
         <div id="emojiContainer" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
 
         <div class="relative z-10 text-center px-6">
-            <h1 class="font-serif text-5xl md:text-7xl text-blue-50 mb-4 tracking-wide opacity-0 translate-y-4" style="animation: fadeUp 1s ease forwards 0.5s;">For Joy</h1>
+            <h1 class="font-serif text-5xl md:text-7xl text-blue-50 mb-4 tracking-wide opacity-0 translate-y-4" style="animation: fadeUp 1s ease forwards 0.5s;">For Jay Park</h1>
             <p class="font-sans text-blue-200 text-lg md:text-xl font-light tracking-widest mb-12 opacity-0 translate-y-4" style="animation: fadeUp 1s ease forwards 1s;">A letter from my heart</p>
             
             <button id="openBtn" class="group relative px-10 py-4 font-serif font-bold italic text-xl tracking-wide text-blue-900 bg-white/90 backdrop-blur-md rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 hover:shadow-[0_8px_40px_rgb(59,130,246,0.3)] hover:-translate-y-1 hover:bg-white transition-all duration-300 opacity-0 translate-y-4" style="animation: fadeUp 1s ease forwards 1.5s;">
@@ -136,20 +131,20 @@
                     <span class="text-4xl animate-pulse-slow block mb-4">💙</span>
                 </div>
                 <p class="font-serif text-xl md:text-2xl leading-relaxed text-slate-700 mb-8">
-                    Since May 6, 2022, we have been together for 1,386 days — and we are still counting.
+                    Since May 6, 2022, we have been together for <span id="daysCount">1,386</span> days — and we are still counting.
                 </p>
                 <div class="space-y-4 text-blue-800 flex flex-col items-center">
-                    <p class="font-handwriting text-3xl md:text-4xl transform -rotate-2">1,386 days of memories.</p>
-                    <p class="font-handwriting text-3xl md:text-4xl transform hover:scale-105 transition-transform">1,386 days of growth.</p>
-                    <p class="font-handwriting text-3xl md:text-4xl transform rotate-2">1,386 days of choosing each other again and again.</p>
+                    <p class="font-handwriting text-3xl md:text-4xl transform -rotate-2"><span class="daysCountText">1,386</span> days of memories.</p>
+                    <p class="font-handwriting text-3xl md:text-4xl transform hover:scale-105 transition-transform"><span class="daysCountText">1,386</span> days of growth.</p>
+                    <p class="font-handwriting text-3xl md:text-4xl transform rotate-2"><span class="daysCountText">1,386</span> days of choosing each other again and again.</p>
                 </div>
             </section>
 
             <section class="mb-24 relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden py-10">
                 <div class="absolute inset-0 bg-blue-900/5 backdrop-blur-sm z-0"></div>
                 <div class="relative z-10 w-full overflow-hidden flex flex-col gap-6">
-                    <div class="gallery-container animate-marquee-left" id="gallery1-row1"></div>
-                    <div class="gallery-container animate-marquee-right" id="gallery1-row2"></div>
+                    <div class="gallery-container animate-marquee-left md:animate-marquee-left-md" id="gallery1-row1"></div>
+                    <div class="gallery-container animate-marquee-right md:animate-marquee-right-md" id="gallery1-row2"></div>
                 </div>
             </section>
 
@@ -182,7 +177,7 @@
 
             <section class="mb-24 max-w-3xl mx-auto px-4">
                 <p class="font-serif text-lg md:text-xl leading-loose text-slate-700 text-center mb-10">
-                    In these 1,386 days, we’ve experienced so many ups and downs. We’ve laughed, we’ve cried, we’ve argued, and we’ve learned how to fix things together. There were nights filled with tears because we missed each other so much. There were days when everything felt overwhelming.
+                    In these <span class="daysCountText">1,386</span> days, we’ve experienced so many ups and downs. We’ve laughed, we’ve cried, we’ve argued, and we’ve learned how to fix things together. There were nights filled with tears because we missed each other so much. There were days when everything felt overwhelming.
                 </p>
 
                 <p class="font-handwriting text-4xl text-center text-blue-800 mb-12 transform -rotate-1">
@@ -215,7 +210,7 @@
                     I believe these words reflect what we are learning every single day. We are learning patience through distance. We are learning kindness through misunderstandings. We are learning humility through growth.
                 </p>
                 <p class="font-serif text-lg md:text-xl leading-loose text-slate-700 text-center mb-16">
-                    I truly believe these 1,386 days have been preparing us — preparing our hearts to be more patient, our minds to be more mature, and our love to be stronger. All of this is shaping us to step into marriage not just in love, but in readiness.
+                    I truly believe these <span class="daysCountText">1,386</span> days have been preparing us — preparing our hearts to be more patient, our minds to be more mature, and our love to be stronger. All of this is shaping us to step into marriage not just in love, but in readiness.
                 </p>
 
                 <div class="relative max-w-lg mx-auto p-8 mt-12 mb-10 bg-white/60 backdrop-blur-sm border border-blue-100/50 rounded-3xl shadow-[0_10px_40px_-10px_rgba(59,130,246,0.15)] text-center">
@@ -240,8 +235,8 @@
             <section class="mb-24 relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-hidden py-10">
                 <div class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-100/30 to-transparent z-0"></div>
                 <div class="relative z-10 w-full overflow-hidden flex flex-col gap-6">
-                    <div class="gallery-container animate-marquee-right" id="gallery2-row1"></div>
-                    <div class="gallery-container animate-marquee-left" id="gallery2-row2"></div>
+                    <div class="gallery-container animate-marquee-right md:animate-marquee-right-md" id="gallery2-row1"></div>
+                    <div class="gallery-container animate-marquee-left md:animate-marquee-left-md" id="gallery2-row2"></div>
                 </div>
             </section>
 
@@ -251,7 +246,7 @@
                 </p>
 
                 <div class="mb-16">
-                    <p class="font-handwriting text-4xl text-blue-900 mb-2">1,386 days down.</p>
+                    <p class="font-handwriting text-4xl text-blue-900 mb-2"><span class="daysCountText">1,386</span> days down.</p>
                     <p class="font-handwriting text-4xl text-blue-900">A lifetime to go.</p>
                 </div>
 
@@ -335,8 +330,8 @@
         const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
         const formattedDays = diffDays.toLocaleString('en-US');
         
-        const mainContent = document.getElementById('mainContent');
-        mainContent.innerHTML = mainContent.innerHTML.replace(/1,386/g, formattedDays);
+        document.getElementById('daysCount').innerText = formattedDays;
+        document.querySelectorAll('.daysCountText').forEach(el => el.innerText = formattedDays);
 
         let photoIndices = Array.from({length: 66}, (_, i) => i + 1);
         for (let i = photoIndices.length - 1; i > 0; i--) {
@@ -347,7 +342,7 @@
         function generateImages(indices) {
             let html = '';
             indices.forEach(i => {
-                html += `<div class="gallery-item"><img loading="lazy" decoding="async" src="foto (${i}).webp" alt="Memory ${i}"></div>`;
+                html += `<div class="gallery-item"><img loading="lazy" decoding="async" src="foto (${i}).webp" alt="Memory ${i}" width="250" height="300"></div>`;
             });
             return html + html;
         }
@@ -489,8 +484,7 @@
             }
             
             const phone = "6281234567890";
-            const encodedMessage = encodeURIComponent(message);
-            const waUrl = `https://api.whatsapp.com/send/?phone=${phone}?text=${message}&type=phone_number&app_absent=0`;
+            const waUrl = `https://api.whatsapp.com/send/?phone=${phone}&text=${message}&type=phone_number&app_absent=0`;
             
             window.open(waUrl, '_blank');
         }
